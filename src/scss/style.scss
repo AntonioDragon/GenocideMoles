@@ -1,0 +1,90 @@
+.block-moles{
+    margin: 12px;
+    height: 220px;
+    border-radius: 10%;
+    &__moles{
+        height: 200px;
+        width: 200px;
+    }
+    &--wrong-press{
+        background-color: rgba(175, 24, 18, 0.753);
+    }
+    &--correct-press{
+        background-color: rgba(18, 175, 31, 0.753);
+    }
+}
+.game-board{
+    background-color: rgba(0, 194, 145,1);
+    border: 1px solid rgba(0, 0, 0,1);
+    border-radius: 10%;
+    height: 500px;
+    width: 680px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.interface-game{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    &__game-board{
+        grid-area: 1 / 1 / 5 / 4;
+    }
+    &__status-board{
+        grid-area: 1 / 4 / 5 / 6;
+    }
+    &__winlose{
+        grid-area: 1 / 2 / 2 / 3; 
+    }
+}
+.status-board{
+    text-align: center;
+    background-color: rgba(24, 147, 116,1);
+    margin-left: 10px;
+    border: 1px solid rgba(0, 0, 0,1);
+    border-radius: 10%;
+    height: 500px;
+    font-size: 30px;
+    color: rgba(255, 158, 0, 1);
+    &__button-resset{
+        height: 60px;
+        width: 240px;
+        border-radius: 10%;
+        background-color: rgba(18, 175, 31, 0.753);
+        font-size: 25px;
+        color: rgb(95, 16, 16);
+    }
+}
+.title{
+    font-size: 120px;
+    margin:10px 0;
+    color:rgba(255, 158, 0, 1);   
+}
+.block-start{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+    &__button{
+        height: 60px;
+        width: 240px;
+        border-radius: 10%;
+        background-color: rgba(18, 175, 31, 0.753);
+        font-size: 25px;
+        color: rgb(95, 16, 16);
+    } 
+}
+.block-winlose{
+    width: 400px;
+    border-radius: 10%;
+    background-color: rgba(18, 175, 31, 0.753);
+    &__moles{
+        margin-left: 50px ;
+        height: 300px;
+        width: 300px;
+    }
+    &__text{
+        text-align: center;
+        color: rgba(24, 147, 116,1);
+        font-size: 40px;
+    }
+}
