@@ -1,43 +1,44 @@
 import React, {useCallback, useEffect, useState} from 'react'
+import createNewMole from '../Helpers/createNewMole'
+import delay from '../Helpers/setTimeOutCreater'
 import usePull from '../Helpers/useContextPull'
 import BlockMole from './BlockMole'
 
 const GameBoard = () => {
-  const {HitsMiss, catchesMole,
-    setHitsMiss, setStateArrMole, arrMole} = usePull()
+  const contextPull = usePull()
   const [oldMoleid, setoldMoleid] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       const newMoleid = Math.floor(Math.random() * 6)
-      if (arrMole[oldMoleid][1] == 1) {
-        setHitsMiss(HitsMiss+1)
-        createNewMole(oldMoleid, 0)
+      if (contextPull.arrMole[oldMoleid][1] == 1) {
+        contextPull.setHitsMiss(contextPull.hitsMiss + 1)
+        contextPull.setStateArrMole(
+            createNewMole(oldMoleid, 0, contextPull.arrMole))
       }
-      createNewMole(newMoleid, 1)
+      contextPull.setStateArrMole(
+          createNewMole(newMoleid, 1, contextPull.arrMole))
       setoldMoleid(newMoleid)
-    }, 4000 - catchesMole * 15);
+    }, 4000 - contextPull.catchesMole * 15);
     return () => clearInterval(interval)
-  }, [createNewMole, catchesMole, arrMole, oldMoleid, setHitsMiss, HitsMiss])
+  }, [contextPull, oldMoleid])
 
   const clicktoMole = useCallback(
       (index) => {
-        createNewMole(index, 2)
-        setTimeout(() => createNewMole(index, 0), 300)
+        contextPull.setStateArrMole(
+            createNewMole(index, 2, contextPull.arrMole))
+        delay(300)
+            .then(()=>
+              contextPull.setStateArrMole(
+                  createNewMole(index, 0, contextPull.arrMole).concat()))
       },
-      [createNewMole],
+      [contextPull],
   )
-
-  const createNewMole = (index, state) => {
-    const temp = arrMole.concat()
-    temp[index][1] = state
-    setStateArrMole(temp)
-  }
 
   return (
     <div className='interface-game__game-board game-board'>
       {
-        arrMole.map((value, index) => {
+        contextPull.arrMole.map((value, index) => {
           return <BlockMole
             key={index+value[0]}
             id={value[0]}

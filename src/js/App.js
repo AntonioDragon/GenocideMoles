@@ -10,8 +10,8 @@ import ContextApp from './Context/ContextApp'
 
 const App = () => {
   const [arrMole, setStateArrMole] = useState('missing')
-  const [HitsMiss, setHitsMiss] = useState(0)
-  const [catchesMole, setCatchesMole] = useState(0)
+  const [hitsMiss, setHitsMiss] = useState(0)
+  const [catchesMole, setCatchesMole] = useState(95)
 
   const startGame = useCallback(
       () => {
@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <ContextApp.Provider
-      value={{HitsMiss, catchesMole, setHitsMiss,
+      value={{hitsMiss, catchesMole, setHitsMiss,
         setCatchesMole, setStateArrMole, arrMole}}>
       <h1 className='title'>Genocide of Moles</h1>
       {

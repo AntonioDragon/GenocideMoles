@@ -1,9 +1,9 @@
-import React, {useCallback, useContext} from 'react'
-import ContextApp from '../Context/ContextApp'
+import React, {useCallback} from 'react'
+import usePull from '../Helpers/useContextPull'
 
 const StatusBar = (props) => {
-  const {HitsMiss, catchesMole,
-    setHitsMiss, setCatchesMole}= useContext(ContextApp)
+  const {hitsMiss, catchesMole,
+    setHitsMiss, setCatchesMole}= usePull()
 
   const ressetGame = useCallback(
       () => {
@@ -11,7 +11,7 @@ const StatusBar = (props) => {
         setHitsMiss(0)
         props.startGame()
       },
-      [props.startGame, setHitsMiss, setCatchesMole, props.ressetArr],
+      [props.startGame, setHitsMiss, setCatchesMole],
   )
 
   const ButtonResset = () =>{
@@ -31,10 +31,10 @@ const StatusBar = (props) => {
       <p className='status-board__score'>
         {`Score:${catchesMole}`}</p>
       <p className='status-board__failed'>
-        {`You failed:${HitsMiss}`}</p>
+        {`You failed:${hitsMiss}`}</p>
       <p className='status-board__time'>
         {`Time:${3000 - catchesMole * 15}ms`}</p>
-      {HitsMiss == 3 && <ButtonResset/>}
+      {hitsMiss == 3 && <ButtonResset/>}
       {catchesMole == 100 && <ButtonResset/>}
     </div>
   )

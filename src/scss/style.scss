@@ -9,15 +9,13 @@
     &--wrong-press{
         background-color: rgba(175, 24, 18, 0.753);
     }
-    &--correct-press{
-        background-color: rgba(18, 175, 31, 0.753);
-    }
 }
 .game-board{
     background-color: rgba(0, 194, 145,1);
     border: 1px solid rgba(0, 0, 0,1);
     border-radius: 10%;
     height: 500px;
+    margin-left: 20px;
     width: 680px;
     display: flex;
     flex-wrap: wrap;
@@ -33,13 +31,14 @@
         grid-area: 1 / 4 / 5 / 6;
     }
     &__winlose{
-        grid-area: 1 / 2 / 2 / 3; 
+        grid-area: 1 / 1 / 5 / 4;
     }
 }
 .status-board{
     text-align: center;
     background-color: rgba(24, 147, 116,1);
     margin-left: 10px;
+    margin-right: 20px;
     border: 1px solid rgba(0, 0, 0,1);
     border-radius: 10%;
     height: 500px;
@@ -75,9 +74,11 @@
 }
 .block-winlose{
     width: 400px;
+    margin-left: 100px;
     border-radius: 10%;
     background-color: rgba(18, 175, 31, 0.753);
     &__moles{
+        margin-top: 10px;
         margin-left: 50px ;
         height: 300px;
         width: 300px;

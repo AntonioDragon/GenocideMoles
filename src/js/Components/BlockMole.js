@@ -1,46 +1,39 @@
 import React, {useCallback, useState} from 'react'
 import usePull from '../Helpers/useContextPull'
+import classNames from 'classnames'
+import delay from '../Helpers/setTimeOutCreater'
 
 const mole = '../static/images/mole.png'
 const moleDead ='../static/images/moleDead.png'
 const moleHole = '../static/images/moleHole.png'
 
 const BlockMole = (props) => {
-  const {setHitsMiss, setCatchesMole,
-    HitsMiss, catchesMole} = usePull()
-  const [ClassHitMiss, setClassHitMiss] = useState(['block-moles'])
+  const contextPull = usePull()
+  const [classHitMiss, setClassHitMiss] = useState(false)
 
 
   const hitMole = useCallback(
       () => {
         if (props.ImgValue == 0) {
-          missMole()
-          setHitsMiss(HitsMiss + 1)
+          setClassHitMiss(true)
+          delay(300).then(
+              ()=>{
+                setClassHitMiss(false)
+                contextPull.setHitsMiss(contextPull.hitsMiss + 1)
+              })
         }
         if (props.ImgValue == 1) {
           props.clicktoMole(props.id)
-          setCatchesMole(catchesMole + 1)
+          contextPull.setCatchesMole(contextPull.catchesMole + 1)
         }
       },
-      [props.ImgValue,
-        props.id,
-        missMole,
-        props.clicktoMole,
-        setCatchesMole,
-        setHitsMiss,
-        HitsMiss,
-        catchesMole],
+      [props.ImgValue, props.id, props.clicktoMole, contextPull],
   )
 
-  const missMole = () =>{
-    const arr = ['block-moles']
-    arr.push('block-moles--wrong-press')
-    setClassHitMiss(arr)
-    setTimeout(() => setClassHitMiss(['block-moles']), 100);
-  }
-
   return (
-    <div className={ClassHitMiss.join(' ')} >
+    <div className={
+      classNames('block-moles', {'block-moles--wrong-press': classHitMiss})
+    }>
       <img className='block-moles__moles'
         src={
           props.ImgValue == 0 ? moleHole :
