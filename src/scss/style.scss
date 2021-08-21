@@ -89,3 +89,73 @@
         font-size: 40px;
     }
 }
+
+@media (max-width : 1150px) {
+    .interface-game{
+        &__game-board{
+            grid-area: 2 / 2 / 5 / 5;
+        }
+        &__status-board{
+            grid-area: 1 / 2 / 2 / 5; 
+        }
+        &__winlose{
+            grid-area: 2 / 2 / 5 / 5;
+        }
+    }
+    .status-board{
+        height: 220px;
+        width: 650px;
+        font-size: 22px;
+        &__button-resset{
+            height: 40px;
+            width: 200px;
+            border-radius: 10%;
+            background-color: rgba(18, 175, 31, 0.753);
+            font-size: 25px;
+            color: rgb(95, 16, 16);
+        }
+        &--text{
+            margin: 5px;
+        }
+    }
+    .title{
+        font-size: 60px; 
+    }
+    .block-winlose{
+        margin-top: 20px;
+        margin-left: 120px;
+        display: flex;
+        width: 400px;
+        height: 200px;
+        &__moles{
+            margin-top: 0;
+
+            height: 200px;
+            width: 200px;
+        }
+        &__text{
+            font-size: 40px;
+        }
+    }
+    .game-board{
+        margin-left: 0px;
+        margin-top: 20px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        height: 300px;
+        width: 650px;
+    }
+    .block-moles{
+        margin: 0;
+        height: 150px;
+        width: 215px;
+        border-radius: 10%;
+        &__moles{
+            height: 150px;
+            width: 150px;
+        }
+        &--wrong-press{
+            background-color: rgba(175, 24, 18, 0.753);
+        }
+    }
+}

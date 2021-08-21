@@ -25,14 +25,14 @@ const StatusBar = (props) => {
 
   return (
     <div className='interface-game__status-board status-board'>
-      <h2 className='status-board__title'>Status Bar</h2>
-      <p className='status-board__difficult'>
+      <h2 className='status-board__title status-board--text'>Status Bar</h2>
+      <p className='status-board__difficult status-board--text'>
         {`Game difficult:${Math.trunc(catchesMole/10)}`}</p>
-      <p className='status-board__score'>
+      <p className='status-board__score status-board--text'>
         {`Score:${catchesMole}`}</p>
-      <p className='status-board__failed'>
+      <p className='status-board__failed status-board--text'>
         {`You failed:${hitsMiss}`}</p>
-      <p className='status-board__time'>
+      <p className='status-board__time status-board--text'>
         {`Time:${3000 - catchesMole * 15}ms`}</p>
       {hitsMiss == 3 && <ButtonResset/>}
       {catchesMole == 100 && <ButtonResset/>}

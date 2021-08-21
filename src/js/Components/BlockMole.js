@@ -11,7 +11,6 @@ const BlockMole = (props) => {
   const contextPull = usePull()
   const [classHitMiss, setClassHitMiss] = useState(false)
 
-
   const hitMole = useCallback(
       () => {
         if (props.ImgValue == 0) {

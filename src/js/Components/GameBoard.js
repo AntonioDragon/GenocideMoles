@@ -1,38 +1,39 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import createNewMole from '../Helpers/createNewMole'
 import delay from '../Helpers/setTimeOutCreater'
 import usePull from '../Helpers/useContextPull'
 import BlockMole from './BlockMole'
 
-const GameBoard = () => {
+const GameBoard = (props) => {
   const contextPull = usePull()
   const [oldMoleid, setoldMoleid] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
+      let miss = 0;
       const newMoleid = Math.floor(Math.random() * 6)
-      if (contextPull.arrMole[oldMoleid][1] == 1) {
-        contextPull.setHitsMiss(contextPull.hitsMiss + 1)
+      if (contextPull.arrMole[oldMoleid].moleImg == 1) {
+        miss = 1
         contextPull.setStateArrMole(
-            createNewMole(oldMoleid, 0, contextPull.arrMole))
+            props.createNewMole(oldMoleid, 0, contextPull.arrMole).concat())
       }
       contextPull.setStateArrMole(
-          createNewMole(newMoleid, 1, contextPull.arrMole))
+          props.createNewMole(newMoleid, 1, contextPull.arrMole).concat())
       setoldMoleid(newMoleid)
-    }, 4000 - contextPull.catchesMole * 15);
+      contextPull.setHitsMiss(contextPull.hitsMiss + miss)
+    }, 3000 - contextPull.catchesMole * 15);
     return () => clearInterval(interval)
-  }, [contextPull, oldMoleid])
+  }, [contextPull, oldMoleid, props.createNewMole])
 
   const clicktoMole = useCallback(
       (index) => {
         contextPull.setStateArrMole(
-            createNewMole(index, 2, contextPull.arrMole))
+            props.createNewMole(index, 2, contextPull.arrMole).concat())
         delay(300)
             .then(()=>
               contextPull.setStateArrMole(
-                  createNewMole(index, 0, contextPull.arrMole).concat()))
+                  props.createNewMole(index, 0, contextPull.arrMole).concat()))
       },
-      [contextPull],
+      [contextPull, props.createNewMole],
   )
 
   return (
@@ -40,9 +41,9 @@ const GameBoard = () => {
       {
         contextPull.arrMole.map((value, index) => {
           return <BlockMole
-            key={index+value[0]}
-            id={value[0]}
-            ImgValue={value[1]}
+            key={value.id}
+            id={value.id}
+            ImgValue={value.moleImg}
             clicktoMole={clicktoMole}
           />
         })

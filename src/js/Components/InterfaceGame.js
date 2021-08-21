@@ -5,11 +5,16 @@ import GameBoard from './GameBoard'
 const InterfaceGame = (props) => {
   const {hitsMiss, catchesMole} = usePull()
 
+  const createNewMole = (index, state, tempArr) => {
+    tempArr[index].moleImg = state
+    return tempArr
+  }
+
   return (
     <>
       {
         hitsMiss < 3 && catchesMole < 100 ?
-        <GameBoard/> :
+        <GameBoard createNewMole={createNewMole}/> :
         <div className='interface-game__winlose block-winlose'>
           <img className='block-winlose__moles'
             src={

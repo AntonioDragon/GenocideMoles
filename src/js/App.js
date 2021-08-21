@@ -11,16 +11,16 @@ import ContextApp from './Context/ContextApp'
 const App = () => {
   const [arrMole, setStateArrMole] = useState('missing')
   const [hitsMiss, setHitsMiss] = useState(0)
-  const [catchesMole, setCatchesMole] = useState(95)
+  const [catchesMole, setCatchesMole] = useState(0)
 
   const startGame = useCallback(
-      () => {
-        const arr = [];
-        for (let i = 0; i < 6; i++) {
-          arr.push([i, 0])
-        }
-        setStateArrMole(arr)
-      },
+      () => setStateArrMole([
+        {id: 0, moleImg: 0},
+        {id: 1, moleImg: 0},
+        {id: 2, moleImg: 0},
+        {id: 3, moleImg: 0},
+        {id: 4, moleImg: 0},
+        {id: 5, moleImg: 0}]),
       [setStateArrMole],
   )
 
