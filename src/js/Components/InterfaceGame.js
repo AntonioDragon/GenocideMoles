@@ -22,7 +22,7 @@ const InterfaceGame = (props) => {
               catchesMole == 100 && '../static/images/moleDead.png'
             }
             alt='Moles'
-            onClick={() => hitMole()}/>
+          />
           <p className='block-winlose__text' >{
             hitsMiss == 3 ? 'You lose' :
             catchesMole == 100 && 'You win'
